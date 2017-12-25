@@ -14,9 +14,9 @@ public class SinMoves : MonoBehaviour {
         //myRigid2D = GetComponent<Rigidbody2D>();
         upMove = GetComponent<UpMoves>();
 
-        preX = Random.Range(-6, 6);
-        preY = Random.Range(-50, 0);
-        transform.position = new Vector2(preX, preY);
+        // preX = Random.Range(-6, 6);
+        // preY = Random.Range(-50, 0);
+        preX = transform.position.x;
     }
 	
 	// Update is called once per frame

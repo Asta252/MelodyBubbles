@@ -237,4 +237,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07e634d4ada62054a9e91d2e949d1d5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bubbleItem: {fileID: 1170500330683090, guid: 79888db74b9530f49882623625f7f7b4, type: 2}
+  bubbleItem:
+  - {fileID: 1170500330683090, guid: 79888db74b9530f49882623625f7f7b4, type: 2}
+  - {fileID: 1076441287060154, guid: 0329dbd827827dd45ac927e58294d238, type: 2}

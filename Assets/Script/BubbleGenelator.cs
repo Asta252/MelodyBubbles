@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class BubbleGenelator : MonoBehaviour {
     
-    public GameObject bubbleItem;
+    public GameObject[] bubbleItem;
    
     // Use this for initialization
     IEnumerator Start () {
         while (true)
         {
-            Instantiate(bubbleItem, transform.position, transform.rotation);
 
+            Vector2 pos = GetRandomPosition();
 
+            int item = Random.Range(1, 6);
+            if (item >= 1 && item <= 3)
+            {
+                Instantiate(bubbleItem[0], pos, Quaternion.identity);
+
+            }
+            else
+            {
+                Instantiate(bubbleItem[1], pos, Quaternion.identity);
+            }
             yield return new WaitForSeconds(3.0f);
         }
         
@@ -23,5 +33,8 @@ public class BubbleGenelator : MonoBehaviour {
 	void Update () {
         
 	}
-    
+    Vector2 GetRandomPosition()
+    {
+        return new Vector2(Random.Range(-6, 6), Random.Range(-50, 0));
+    }
 }
