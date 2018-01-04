@@ -30,10 +30,11 @@ public class PlayerController : MonoBehaviour {
         float downR = 180;
         float leftR = 90;
         float upR = 0;
-
+        Vector2 scale = transform.localScale;
         if (Input.GetKey(KeyCode.RightArrow))
         {
             this.transform.rotation = Quaternion.Euler(0.0f, 0.0f, rightR);
+            scale.x = 1;
         }
         else if (Input.GetKey(KeyCode.UpArrow))
         {
@@ -42,10 +43,11 @@ public class PlayerController : MonoBehaviour {
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
             this.transform.rotation = Quaternion.Euler(0.0f, 0.0f, leftR);
+            scale.x = -1;
         }else if (Input.GetKey(KeyCode.DownArrow))
         {
             this.transform.rotation = Quaternion.Euler(0.0f, 0.0f, downR);
         }
-    
+        transform.localScale = scale;
     }
 }
