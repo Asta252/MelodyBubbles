@@ -16,7 +16,7 @@ public class BubbleDestroy : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D c)
     {
-        if (c.gameObject.tag == "bubble")
+        if (c.gameObject.tag == "bubble"||c.gameObject.tag=="melody")
         {
             Destroy(c.gameObject);
         }
