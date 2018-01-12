@@ -1,14 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
     private float playerSpeed = 5.0f;
     public GameObject[] Melody;
     public GameObject gameManage;
+    private int score;
+    private int depth;
+    private int bress;
+    private Animator myAnimator;
+    private GameObject scoreText;
+    private GameObject sinkText;
 	// Use this for initialization
 	void Start () {
         gameManage = GameObject.Find("GameManage");
+        myAnimator = GetComponent<Animator>();
+        scoreText = GameObject.Find("scoreText");
 	}
 	
 	// Update is called once per frame
@@ -18,6 +27,10 @@ public class PlayerController : MonoBehaviour {
         {
             PlayerMoves();
             PlayerRotate();
+        }else if (gameManage.GetComponent<GameManage>().gameState == GameManage.GameState.CLEAR)
+        {
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            myAnimator.speed = 0.3f;
         }
         
 	}
@@ -56,20 +69,31 @@ public class PlayerController : MonoBehaviour {
         {
             this.transform.rotation = Quaternion.Euler(0.0f, 0.0f, rightR);
             scale.x = 1;
+            myAnimator.speed = 1.2f;
         }
         else if (Input.GetKey(KeyCode.UpArrow))
         {
             this.transform.rotation = Quaternion.Euler(0.0f, 0.0f, upR);
+            myAnimator.speed = 1.2f;
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
             this.transform.rotation = Quaternion.Euler(0.0f, 0.0f, leftR);
             scale.x = -1;
-        }else if (Input.GetKey(KeyCode.DownArrow))
+            myAnimator.speed = 1.2f;
+        }
+        else if (Input.GetKey(KeyCode.DownArrow))
         {
             this.transform.rotation = Quaternion.Euler(0.0f, 0.0f, downR);
+            myAnimator.speed = 1.2f;
+        }
+        else
+        {
+            myAnimator.speed = 0.5f;
         }
         transform.localScale = scale;
+
+        this.scoreText.GetComponent<Text>().text = score + "pt";
     }
 
     private void OnCollisionEnter2D(Collision2D c)
@@ -81,8 +105,10 @@ public class PlayerController : MonoBehaviour {
         if (c.gameObject.tag == "melody")
         {
             c.gameObject.GetComponent<MelodyManage>().PlayMelody();
-            c.gameObject.layer = 11;
-            Destroy(c.gameObject,1.0f);
+           
+           // Destroy(c.gameObject,1.0f);
+
+            score += 10;
         }
     }
 }
