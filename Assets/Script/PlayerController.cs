@@ -13,11 +13,15 @@ public class PlayerController : MonoBehaviour {
     private Animator myAnimator;
     private GameObject scoreText;
     private GameObject sinkText;
+    private GameObject stateText;
+    private GameObject rankText;
 	// Use this for initialization
 	void Start () {
         gameManage = GameObject.Find("GameManage");
         myAnimator = GetComponent<Animator>();
         scoreText = GameObject.Find("scoreText");
+        stateText = GameObject.Find("stateText");
+        rankText = GameObject.Find("rankText");
 	}
 	
 	// Update is called once per frame
@@ -31,7 +35,13 @@ public class PlayerController : MonoBehaviour {
         {
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             myAnimator.speed = 0.3f;
+
+            stateText.GetComponent<Text>().text = "Game Clear";
+
+            Rank();
         }
+        
+
         
 	}
 
@@ -95,7 +105,19 @@ public class PlayerController : MonoBehaviour {
 
         this.scoreText.GetComponent<Text>().text = score + "pt";
     }
+    void Rank()
+    {
+        string rankZero = "Empty...";
+        string rankD = "So Good!";
 
+        if (score == 0)
+        {
+            rankText.GetComponent<Text>().text = score + " pt\n" + rankZero;
+        }else if (score > 0 && score <= 100)
+        {
+            rankText.GetComponent<Text>().text = score + "pt \n" + rankD;
+        }
+    }
     private void OnCollisionEnter2D(Collision2D c)
     {
         if (c.gameObject.tag == "bubble")

@@ -23,7 +23,7 @@ public class BubbleGenelator : MonoBehaviour {
             {
                 Instantiate(bubbleItem[1], pos, Quaternion.identity);
             }
-            yield return new WaitForSeconds(3.0f);
+            yield return new WaitForSeconds(1.0f);
         }
         
        
