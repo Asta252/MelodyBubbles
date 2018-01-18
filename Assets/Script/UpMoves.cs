@@ -16,6 +16,6 @@ public class UpMoves : MonoBehaviour {
 	}
     public void Move(Vector2 direction)
     {
-        myRigid2D.velocity = direction * speed;
+        this.myRigid2D.velocity = direction * speed;
     }
 }

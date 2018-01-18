@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 50178655762668822}
   - component: {fileID: 58175473555414744}
   - component: {fileID: 114017707821365382}
-  - component: {fileID: 114297021328639788}
   - component: {fileID: 82359104547803752}
   - component: {fileID: 114135547557026738}
   m_Layer: 10
@@ -174,6 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 0.2
   flSpeed: 1
+  speed: 0.3
 --- !u!114 &114135547557026738
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -186,18 +186,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   melody: {fileID: 8300000, guid: 9e165429c764bc544aa13d966b0b7188, type: 3}
---- !u!114 &114297021328639788
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1076441287060154}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1eccd9b410d52943854263487b23ad8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0.3
 --- !u!212 &212791452036605544
 SpriteRenderer:
   m_ObjectHideFlags: 1

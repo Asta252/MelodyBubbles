@@ -37,8 +37,10 @@ public class PlayerController : MonoBehaviour {
             myAnimator.speed = 0.3f;
 
             stateText.GetComponent<Text>().text = "Game Clear";
-
+            
             Rank();
+
+            
         }
         
 
@@ -118,6 +120,8 @@ public class PlayerController : MonoBehaviour {
             rankText.GetComponent<Text>().text = score + "pt \n" + rankD;
         }
     }
+
+    
     private void OnCollisionEnter2D(Collision2D c)
     {
         if (c.gameObject.tag == "bubble")
