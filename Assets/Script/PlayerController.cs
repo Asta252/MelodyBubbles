@@ -9,12 +9,16 @@ public class PlayerController : MonoBehaviour {
     public GameObject gameManage;
     private int score;
     private int depth;
-    private int bress;
+    public int bress;
+    private int bressMax;
     private Animator myAnimator;
     private GameObject scoreText;
     private GameObject sinkText;
     private GameObject stateText;
     private GameObject rankText;
+   
+    //private Slider _slider;
+    //bool totchBress;
 	// Use this for initialization
 	void Start () {
         gameManage = GameObject.Find("GameManage");
@@ -22,15 +26,27 @@ public class PlayerController : MonoBehaviour {
         scoreText = GameObject.Find("scoreText");
         stateText = GameObject.Find("stateText");
         rankText = GameObject.Find("rankText");
+        //_slider = GameObject.Find("Slider").GetComponent<Slider>();
+
+        myAnimator.SetBool("live", true);
+       
+        
+       // totchBress = false;
+        //_slider.value = bress;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
+        
         if (gameManage.GetComponent<GameManage>().gameState == GameManage.GameState.PLAYABLE)
         {
+            
+
             PlayerMoves();
             PlayerRotate();
+           // _slider.value = bress;
+
+            
         }else if (gameManage.GetComponent<GameManage>().gameState == GameManage.GameState.CLEAR)
         {
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
@@ -41,11 +57,20 @@ public class PlayerController : MonoBehaviour {
             Rank();
 
             
+        }else if (gameManage.GetComponent<GameManage>().gameState == GameManage.GameState.GAMEOVER)
+        {
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            myAnimator.SetBool("live", false);
+            stateText.GetComponent<Text>().text = "Game Over";
+
+            Rank();
         }
         
 
         
 	}
+
+   
 
     void PlayerMoves()
     {
@@ -111,13 +136,16 @@ public class PlayerController : MonoBehaviour {
     {
         string rankZero = "Empty...";
         string rankD = "So Good!";
-
+        string rankC = "Cool!";
         if (score == 0)
         {
             rankText.GetComponent<Text>().text = score + " pt\n" + rankZero;
         }else if (score > 0 && score <= 100)
         {
             rankText.GetComponent<Text>().text = score + "pt \n" + rankD;
+        }else if (score > 100 && score <= 300)
+        {
+            rankText.GetComponent<Text>().text = score + "pt \n" + rankC;
         }
     }
 
@@ -126,7 +154,12 @@ public class PlayerController : MonoBehaviour {
     {
         if (c.gameObject.tag == "bubble")
         {
-            Destroy(c.gameObject);
+            
+           
+            //_slider.value = bress;
+            Destroy(c.gameObject,0.1f);
+
+           
         }
         if (c.gameObject.tag == "melody")
         {
@@ -135,6 +168,16 @@ public class PlayerController : MonoBehaviour {
            // Destroy(c.gameObject,1.0f);
 
             score += 10;
+        }
+       
+    }
+
+    private void OnTriggerEnter2D(Collider2D c)
+    {
+        if (c.gameObject.tag == "enemy")
+        {
+
+            gameManage.GetComponent<GameManage>().gameState = GameManage.GameState.GAMEOVER;
         }
     }
 }
