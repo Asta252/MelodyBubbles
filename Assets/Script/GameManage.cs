@@ -40,7 +40,7 @@ public class GameManage : MonoBehaviour {
                 }
                 break;
             case GameState.GAMEOVER:
-
+                ReButton.interactable = true;
                 break;
             case GameState.PLAYABLE:
                 ReButton.interactable = false;
