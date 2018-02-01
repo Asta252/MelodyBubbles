@@ -830,6 +830,12 @@ Prefab:
       propertyPath: m_Radius
       value: 0.56
       objectReference: {fileID: 0}
+    - target: {fileID: 114684280230783418, guid: bbd727681cdc905498e8e4565f7bb79b,
+        type: 2}
+      propertyPath: Blood
+      value: 
+      objectReference: {fileID: 1675688839361106, guid: b7d9aa7eddb4020498dfa26a52ef3249,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bbd727681cdc905498e8e4565f7bb79b, type: 2}
   m_IsPrefabParent: 0

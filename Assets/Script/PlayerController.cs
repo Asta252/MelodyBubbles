@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour {
     private GameObject sinkText;
     private GameObject stateText;
     private GameObject rankText;
-   
+    public GameObject Blood;
     //private Slider _slider;
     //bool totchBress;
 	// Use this for initialization
@@ -149,7 +149,10 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    
+    void BloodEff()
+    {
+        Instantiate(Blood, transform.position, transform.rotation);
+    }
     private void OnCollisionEnter2D(Collision2D c)
     {
         if (c.gameObject.tag == "bubble")
@@ -176,7 +179,7 @@ public class PlayerController : MonoBehaviour {
     {
         if (c.gameObject.tag == "enemy")
         {
-
+            BloodEff();
             gameManage.GetComponent<GameManage>().gameState = GameManage.GameState.GAMEOVER;
         }
     }

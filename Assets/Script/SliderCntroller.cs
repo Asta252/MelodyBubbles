@@ -43,7 +43,7 @@ public class SliderCntroller : MonoBehaviour {
             //  _slider.value = bress;
         }
 
-        Debug.Log(bress);
+        //Debug.Log(bress);
         if (bress == 0)
         {
             gameManage.GetComponent<GameManage>().gameState = GameManage.GameState.GAMEOVER;
