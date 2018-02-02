@@ -160,17 +160,19 @@ public class PlayerController : MonoBehaviour {
             
            
             //_slider.value = bress;
-            Destroy(c.gameObject,0.1f);
+            Destroy(c.gameObject);
 
            
         }
         if (c.gameObject.tag == "melody")
         {
             c.gameObject.GetComponent<MelodyManage>().PlayMelody();
-           
-           // Destroy(c.gameObject,1.0f);
 
-            score += 10;
+            // Destroy(c.gameObject,1.0f);
+            if (gameManage.GetComponent<GameManage>().gameState == GameManage.GameState.PLAYABLE)
+            {
+                score += 10;
+            }
         }
        
     }
