@@ -8,8 +8,9 @@ public class PlayerController : MonoBehaviour {
     public GameObject[] Melody;
     public GameObject gameManage;
     private int score;
-    private int depth;
+    private float depth;
     public int bress;
+    public float rate;
     private int bressMax;
     private Animator myAnimator;
     private GameObject scoreText;
@@ -29,8 +30,10 @@ public class PlayerController : MonoBehaviour {
         //_slider = GameObject.Find("Slider").GetComponent<Slider>();
 
         myAnimator.SetBool("live", true);
-       
-        
+
+        depth = this.transform.position.y * (-1);
+        rate = 1;
+
        // totchBress = false;
         //_slider.value = bress;
 	}
@@ -44,9 +47,9 @@ public class PlayerController : MonoBehaviour {
 
             PlayerMoves();
             PlayerRotate();
-           // _slider.value = bress;
-
-            
+            // _slider.value = bress;
+            depth = this.transform.position.y * (-1);
+            rate = depth * (0.04f) + 0.92f;
         }else if (gameManage.GetComponent<GameManage>().gameState == GameManage.GameState.CLEAR)
         {
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
@@ -137,6 +140,7 @@ public class PlayerController : MonoBehaviour {
         string rankZero = "Empty...";
         string rankD = "So Good!";
         string rankC = "Cool!";
+        string rankB = "Tasty!";
         if (score == 0)
         {
             rankText.GetComponent<Text>().text = score + " pt\n" + rankZero;
@@ -146,6 +150,9 @@ public class PlayerController : MonoBehaviour {
         }else if (score > 100 && score <= 300)
         {
             rankText.GetComponent<Text>().text = score + "pt \n" + rankC;
+        }else if (score > 300 && score <= 800)
+        {
+            rankText.GetComponent<Text>().text = score + "pt \n" + rankB;
         }
     }
 
@@ -171,7 +178,7 @@ public class PlayerController : MonoBehaviour {
             // Destroy(c.gameObject,1.0f);
             if (gameManage.GetComponent<GameManage>().gameState == GameManage.GameState.PLAYABLE)
             {
-                score += 10;
+                score += 10*(int)rate;
             }
         }
        

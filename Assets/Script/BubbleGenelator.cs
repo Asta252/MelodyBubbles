@@ -14,14 +14,18 @@ public class BubbleGenelator : MonoBehaviour {
             Vector2 pos = GetRandomPosition();
 
             int item = Random.Range(1, 6);
-            if (item >= 1 && item <= 3)
+            if (item >= 1 && item <= 2)
             {
                 Instantiate(bubbleItem[0], pos, Quaternion.identity);
 
             }
-            else
+            else if(item>=3&&item<=4)
             {
                 Instantiate(bubbleItem[1], pos, Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(bubbleItem[2], pos, Quaternion.identity);
             }
             yield return new WaitForSeconds(1.0f);
         }

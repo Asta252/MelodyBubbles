@@ -8,13 +8,14 @@ public class SliderCntroller : MonoBehaviour {
     int bress;
     int bressMax;
     public GameObject gameManage;
+    public PlayerController PCtrl;
     private float timeleft;
     // Use this for initialization
     void Start () {
         _slider = GameObject.Find("Slider").GetComponent<Slider>();
 
         gameManage = GameObject.Find("GameManage");
-
+        PCtrl.GetComponent<PlayerController>().rate = 1;
         bressMax = 500;
         bress = bressMax;
         _slider.value = bress;
@@ -33,13 +34,14 @@ public class SliderCntroller : MonoBehaviour {
 
     void BressControl()
     {
+        
         timeleft -= Time.deltaTime;
         if (timeleft <= 0.0f)
         {
             timeleft = 1.0f;
 
 
-            bress -= 10;
+            bress -= 10*(int)PCtrl.rate;
             //  _slider.value = bress;
         }
 
