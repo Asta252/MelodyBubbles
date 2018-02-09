@@ -140,7 +140,9 @@ public class PlayerController : MonoBehaviour {
         string rankZero = "Empty...";
         string rankD = "So Good!";
         string rankC = "Cool!";
-        string rankB = "Tasty!";
+        string rankB = "Wanderful!";
+        string rankA = "So Melodias!";
+        string rankS = "Amazing!";
         if (score == 0)
         {
             rankText.GetComponent<Text>().text = score + " pt\n" + rankZero;
@@ -153,6 +155,12 @@ public class PlayerController : MonoBehaviour {
         }else if (score > 300 && score <= 800)
         {
             rankText.GetComponent<Text>().text = score + "pt \n" + rankB;
+        }else if (score > 800 && score <= 1200)
+        {
+            rankText.GetComponent<Text>().text = score + "pt \n" + rankA;
+        }else if (score > 1200)
+        {
+            rankText.GetComponent<Text>().text = score + "pt \n" + rankS;
         }
     }
 
